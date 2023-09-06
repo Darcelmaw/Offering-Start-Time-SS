@@ -106,6 +106,7 @@
         font-size: 50px;
         padding-top: 26px;
       }
+
       
 
     </style>
@@ -116,7 +117,7 @@
         const htM = 3600000;
         const mtM = 60000;
 
-        console.log("The type of variable is",typeof event)
+        
         
 
         let dragHour = document.getElementById("Hours1");
@@ -126,6 +127,7 @@
         let soulHour = document.getElementById("Hours3");
         let soulMin = document.getElementById("Minutes3");
         let soulAmount = document.getElementById("Amount3");
+
         let startdate = document.getElementById("event");
         let startdatevalue = startdate.value;
         let startdatedate = new Date(startdatevalue);
@@ -147,6 +149,8 @@
         let startofferdate = startoffer.toLocaleString();
 
         document.getElementById("dateout").innerHTML = startofferdate;
+        
+        console.log("The type of variable is",typeof starteventmilli)
 
       }
     </script>
@@ -226,9 +230,7 @@
             Offering Event Starting Date
           </label>
           <br><br><br><br>
-          <input type="date" id="event">
-          
-   
+          <input type="datetime-local" id="event">
           
 
         </div>
@@ -242,8 +244,9 @@
         
         
       </form> 
-
+      
       <p class ="output" id="dateout"></p>
+      
     </div>
 
     
