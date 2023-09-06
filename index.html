@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Offering Calculator
+    </title>
+    <style>
+
+      body {
+        background-image: url(galaxy.png);
+      } 
+
+      .title{
+        margin: auto;
+        background-color: white;
+        color: black;
+        width: 500px;
+        height: 50px;
+        text-align: center;
+        border: black solid 3px;
+        border-radius: 25px;
+        padding-top: 10px;
+      }
+
+      .myDiv{
+        margin: auto;
+        text-align: center;
+        border-width: 5px;
+        border: solid black;
+        background-color: rgb(186, 186, 186);
+        height: 1150px;
+        width: 750px;
+      }
+
+      .dragonball{
+        margin: auto;
+        text-align: center;
+        border-width: 1px;
+        border: solid black;
+        width: 700px;
+        height: 200px;
+        background-image: url(dragonball.png);
+      }
+
+      .fortyeighthour{
+        margin: auto;
+        text-align: center;
+        border-width: 1px;
+        border: solid black;
+        width: 700px;
+        height: 200px;
+        background-image: url(48hour.png);
+      }
+
+      .souls{
+        margin: auto;
+        text-align: center;
+        border-width: 1px;
+        border: solid black;
+        width: 700px;
+        height: 200px;
+        background-image: url(souls.png);
+      }
+
+      .calendar{
+        margin: auto;
+        text-align: center;
+        border-width: 1px;
+        border: solid black;
+        width: 700px;
+        height: 200px;
+        background-image: url(calendar.png);
+      }
+      .caltitle{
+        color:white;
+        font-weight: bold;
+      }
+
+      .calculate{
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        height: 64px;
+        width: 130px;
+        border-radius:32px ;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .calculate:hover {
+      background-color:#55cf59;
+      transition: 0.2s;
+      }
+
+      .output{
+        margin: auto;
+        text-align: center;
+        border-width: 1px;
+        border: solid black;
+        width: 700px;
+        height: 80px;
+        background-color: rgb(255, 255, 255);
+        font-size: 50px;
+        padding-top: 26px;
+      }
+      
+
+    </style>
+
+    <script>
+      function calculater()
+      {
+        const htM = 3600000;
+        const mtM = 60000;
+
+        console.log("The type of variable is",typeof event)
+        
+
+        let dragHour = document.getElementById("Hours1");
+        let dragMin = document.getElementById("Minutes1");
+        let dragAmount = document.getElementById("Amount1");
+        let fortyeightAmount = document.getElementById("Amount2");
+        let soulHour = document.getElementById("Hours3");
+        let soulMin = document.getElementById("Minutes3");
+        let soulAmount = document.getElementById("Amount3");
+        let startdate = document.getElementById("event");
+        let startdatevalue = startdate.value;
+        let startdatedate = new Date(startdatevalue);
+        
+
+        <!--
+          ( dragHour * htM + dragMin * mtM) * dragAmount 
+          + (48 * htM) * fortyeightAmount 
+          + (soulHour * htM + soulMin * mtM) * soulAmount
+        -->
+        let totaltimemilli = ( dragHour.value * htM + dragMin.value * mtM) * dragAmount.value  
+          + (48 * htM) * fortyeightAmount.value  
+          + (soulHour.value  * htM + soulMin.value  * mtM) * soulAmount.value ;
+
+        let starteventmilli = startdatedate.getTime();
+
+        let startoffermilli = starteventmilli - totaltimemilli;
+        let startoffer = new Date(startoffermilli);
+        let startofferdate = startoffer.toLocaleString();
+
+        document.getElementById("dateout").innerHTML = startofferdate;
+
+      }
+    </script>
+
+
+  </head>
+  <body>
+    <h1 class="title">
+      Offering Start Calculator
+    </h1>
+
+    <br>
+    <br>
+
+      <div class ="myDiv">
+        <form>
+        <br>
+
+        <div class ="dragonball">
+          <br>
+          <br>
+          <label for="Hours1">
+            Hours:
+          </label>
+          <input type="number" id="Hours1" min="0" max="48">
+        
+          <label for="Minutes1">
+             Minutes:
+          </label>
+          <input type="number" id="Minutes1" min="0" max="60">
+
+          <label for="Amount1">
+            Amount:
+          </label>
+          <input type="number" id="Amount1" min="0" max="4">
+
+        </div>
+        
+        <br>
+
+        <div class="fortyeighthour">
+          <br>
+          <br>
+          <label for="Amount2">
+            Amount:
+          </label>
+          <input type="number" id="Amount2" min="0" max="4">
+        </div>
+
+        <br>
+
+        <div class ="souls">
+          <br>
+      
+          <label for="Hours3">
+            Hours:
+          </label>
+          <input type="number" id="Hours3" min="0" max="8">
+        
+          <label for="Minutes3">
+             Minutes:
+          </label>
+          <input type="number" id="Minutes3" min="0" max="60">
+
+          <label for="Amount3">
+            Amount:
+          </label>
+          <input type="number" id="Amount3" min="0" max="4">
+
+        </div>
+
+        <br>
+
+        <div class ="calendar">
+          <br><br>
+          <label class = "caltitle"> 
+            Offering Event Starting Date
+          </label>
+          <br><br><br><br>
+          <input type="date" id="event">
+          
+   
+          
+
+        </div>
+
+        <br>
+
+        <input class = "calculate" type="button" value="Calculate" onclick="calculater()">
+
+        <br><br>
+        
+        
+        
+      </form> 
+
+      <p class ="output" id="dateout"></p>
+    </div>
+
+    
+  </body>
+</html>
